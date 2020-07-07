@@ -126,7 +126,7 @@ class Navigator(object, metaclass=Singleton):
                 # we only increase the tries when we cannot refresh id
                 # to avoid an infinite loop
                 tries += 1
-        raise Exception("Cannot fetch the page from Google Scholar.")
+        raise Exception("Cannot fetch the page from Google Scholar. Response status code " + str(resp.status_code) )
 
     def _check_proxy(self, proxies) -> bool:
         """Checks if a proxy is working.

@@ -198,6 +198,8 @@ class Publication(object):
                     self.bib['pages'] = val.text
                 elif key == 'publisher':
                     self.bib['publisher'] = val.text
+                elif key == 'conference' or key == 'book' or key == 'journal':
+                    self.bib['conference'] = val.text
                 elif key == 'Publication date':
 
                     patterns = ['YYYY/M',
