@@ -23,7 +23,6 @@ author_info_map = {}
 interested_authors = set([])
 
 def parseAuthors():
-
     
     global name_to_id
     global author_info_map
@@ -185,6 +184,7 @@ def write_data_as_csv():
         total_10 = 0
         related_10 = 0
         
+        # for all pubs
         for (confname, year) in pub_info['list']:
             # skip arXiv articles
             if confname == "CoRR":
@@ -224,17 +224,20 @@ def write_data_as_csv():
         
 if __name__ == "__main__":
 
-    # this module, computes the statistics of interested authors and prints it to a csv file
+    # this module, computes the statistics of interested authors and prints them to a csv file
     # interested authors are those who have published atleast one paper in either aaai OR ijcai
-    # to add more related conferences, add them to "conf_to_aliases" map above
+    # to add/remove conferences in the interested authors condition, please refer to "conf_to_aliases" map above
 
     # obj.pkl store a list of all interested authors and their publications
     # if the condition for interested authors is changed in conf_to_aliases, 
-    # please detele the obj.pkl, and run the script
+    # please detele the obj.pkl, before executing the the script
     
     if not os.path.isfile('objs.pkl'):
+        # identify interested authors
         parseAuthors()
+        # collect their publications
         parsePubs()
 
+    # extract necessary fields and print them to a file
     write_data_as_csv()
 
